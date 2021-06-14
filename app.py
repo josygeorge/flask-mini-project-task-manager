@@ -8,19 +8,16 @@ if os.path.exists("env.py"):
 
 # create instance of Flask
 app = Flask(__name__)
-
+# Setting environment variables
 app.config["MONGO_DATABASE"] = os.environ.get("MONGO_DATABASE")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.SECRET_KEY = os.environ.get("SECRET_KEY")
-
+# instance of mongo
 mongo = PyMongo(app)
 
 
+# routes to task page
 @app.route('/')
-def hello():
-    return "Hello World!"
-
-
 @app.route('/get-tasks')
 def get_tasks():
     tasks = mongo.db.tasks.find()
