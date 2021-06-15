@@ -29,7 +29,7 @@
                 </a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="{{ url_for('get_tasks')}}">Home</a></li>
-                    <li><a href="#">Profile</a></li>
+                    <li><a href="{{ url_for('profile', username=session['user'])}}">Profile</a></li>
                     <li><a href="#">New Task</a></li>
                     <li><a href="#">Manage Categories</a></li>
                     <li><a href="#">Logout</a></li>
@@ -41,9 +41,11 @@
         </nav>
         <!-- Mobile side nav -->
         <ul class="sidenav" id="mobile-demo">
-            <li><h5 class="center-align blue-grey-text text-darken-2">Task Manager</h5></li>
+            <li>
+                <h5 class="center-align blue-grey-text text-darken-2">Task Manager</h5>
+            </li>
             <li><a href="{{url_for('get_tasks')}}">Home</a></li>
-            <li><a href="#">Profile</a></li>
+            <li><a href="{{ url_for('profile', username=session['user'])}}">Profile</a></li>
             <li><a href="#">New Task</a></li>
             <li><a href="#">Manage Categories</a></li>
             <li><a href="#">Logout</a></li>
@@ -51,8 +53,25 @@
             <li><a href="{{ url_for('login')}}">Login</a></li>
         </ul>
     </header>
-    {% block body_content %}
-    {% endblock %}
+    <section>
+        <!-- flash messages -->
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <div class="row flashes">
+            <h5 class="blue-grey darken-4 center-align light-blue-text col s12 m6 offset-m3">
+                {{ message }}
+            </h5>
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </section>
+    <main class="container">
+        {% block body_content %}
+        {% endblock %}
+    </main>
+
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>

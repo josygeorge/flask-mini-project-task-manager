@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% block body_content %}
 <h4 class="center-align">Login</h4>
-<div class="row register">
-    <form class="col s12 m6 offset-m3" method="POST" action="{{url_for('register')}}">
+<div class="row page-main">
+    <form class="col s12 m10 offset-m1" method="POST" action="{{url_for('login')}}">
         <div class="card-panel">
             <!-- username -->
             <div class="row">
@@ -12,7 +12,6 @@
                         minlength="6" maxlength="20" 
                         pattern="^[a-zA-Z0-9_]{6,20}$" class="validate" required>
                     <label for="username">Username *</label>
-                    <p class="center-align footnote">(Combination of digits/uppercase/lowercase/underscore are allowed [6-20 characters])</p>
                 </div>
             </div>
             <!-- password -->
@@ -24,13 +23,12 @@
                         pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{6,20}$" 
                         class="validate" required>
                     <label for="password">Password *</label>
-                    <p class="center-align footnote">(Make sure it's at least a digit, an uppercase, a lowercase character, one special symbol [6-20 characters])</p>
                 </div>
             </div>
             <!-- register -->
             <div class="row">
                 <button class="col s12 btn-large light-blue darken-4 text-shadow">
-                    Create &nbsp;<i class="fas fa-sign-in-alt"></i>
+                    Log In &nbsp;<i class="fas fa-sign-in-alt"></i>
                 </button>
             </div>
         </div>
@@ -39,8 +37,8 @@
 <div class="row">
     <div class="col s12">
         <p class="center-align">
-            Create an account?
-            <a href="{{url_for('login')}}" class="light-blue-text darken-4">Register</a>
+            New? Create an account.
+            <a href="{{url_for('register')}}" class="light-blue-text darken-4">&nbsp;Register</a>
         </p>
     </div>
 </div>
