@@ -13,7 +13,7 @@ app = Flask(__name__)
 # Setting environment variables
 app.config["MONGO_DATABASE"] = os.environ.get("MONGO_DATABASE")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
-app.SECRET_KEY = os.environ.get("SECRET_KEY")
+app.secret_key = os.environ.get("SECRET_KEY")
 # instance of mongo
 mongo = PyMongo(app)
 
@@ -27,9 +27,27 @@ def get_tasks():
 
 
 # Register
-@app.route('/register', methods=['GET','POST'])
+@app.route('/register', methods=['GET', 'POST'])
 def register():
+    if request.method == 'POST':
+        # check if the POST user exists in DB
+        user_exists = mongo.db.users.find_one(
+            {'username': request.form.get('username').lower()})
+        if user_exists:
+            print('User exists')
+            flash("User already exists")
+            return redirect(url_for('register'))
+        register = {
+            'username': request.form.get('username'),
+            'password': generate_password_hash(request.form.get('password'))
+        }
+        mongo.db.users.insert_one(register)
+        # put the new user into 'session' cookie
+        session["user"] = request.form.get("username").lower()
+        print('User Created!')
+        flash("User Created!")
     return render_template('register.html')
+
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),

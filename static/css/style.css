@@ -7,3 +7,7 @@ body {
 .register .card-panel{
     background-color: rgb(226, 230, 217);;
 }
+.register .footnote {
+    font-style: italic;
+    font-size: 0.75rem;
+}
