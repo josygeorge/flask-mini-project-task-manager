@@ -11,6 +11,7 @@ $(document).ready(function(){
         }
     });
     $("select").formSelect();
+    $('.modal').modal();
 
     // Select validation - customized function due to non-workability of built-in functionality
     validateMaterializeSelect();
