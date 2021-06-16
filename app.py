@@ -104,8 +104,21 @@ def logout():
 
 
 # Add Task
-@app.route("/add-task")
+@app.route("/add-task", methods=["GET", "POST"])
 def add_task():
+    if request.method == 'POST':
+        is_urgent = "on" if request.form.get("is_urgent") else "off"
+        new_task = {
+            "category_name": request.form.get("category_name"),
+            "task_name": request.form.get("task_name"),
+            "task_description": request.form.get("task_description"),
+            "due_date": request.form.get("due_date"),
+            "is_urgent": is_urgent,
+            "created_by": session["user"]
+        }
+        mongo.db.tasks.insert_one(new_task)
+        flash("New task added!")
+        return redirect(url_for("get_tasks"))
     categories = mongo.db.categories.find().sort('category_name', 1)
     return render_template('add_task.html', categories=categories)
 

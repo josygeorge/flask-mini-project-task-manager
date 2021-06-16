@@ -8,14 +8,13 @@
         <div class="row">
             <div class="input-field col s12">
                 <i class="fas fa-folder-open prefix light-blue-text text-darken-4"></i>
-                <select id="category_name" class="validate" required>
+                <select id="category_name" name="category_name" class="validate" required>
                     <option value="" disabled selected>Select Category</option>
                     {% for category in categories %}
                         <option value="{{ category.category_name }}">
                             {{ category.category_name }}
                         </option>
                     {% endfor %}
-
                 </select>
                 <label for="category_name">Task Category</label>
             </div>
@@ -38,7 +37,7 @@
                 <label for="task_description">Task Description</label>
             </div>
         </div>
-        <!-- Due Date -->
+        <!-- Due Date using date picker-->
         <div class="row">
             <div class="input-field col s12">
                 <i class="fas fa-calendar-alt prefix light-blue-text text-darken-4"></i>
@@ -46,7 +45,7 @@
                 <label for="due_date">Due Date</label>
             </div>
         </div>
-        <!-- check for 'Is Urgent'  -->
+        <!-- check/toggle for 'Is Urgent' [NOTE: POST will have true / false] -->
         <div class="row">
             <div class="input-field col s12">
                 <div class="switch">
@@ -57,6 +56,14 @@
                         Is Urgent
                     </label>
                 </div>
+            </div>
+        </div>
+        <!-- Submit Button -->
+        <div class="row">
+            <div class="col s12 center-align">
+                <button type="submit" class="btn-large light-blue darken-1 text-shadow">
+                    Add Task <i class="fas fa-plus-square right"></i>
+                </button>
             </div>
         </div>
         <!-- All row ends -->
