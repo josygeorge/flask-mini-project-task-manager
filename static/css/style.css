@@ -1,6 +1,9 @@
 body {
     background-color: rgb(213, 228, 223);
 }
+.nav-wrapper > ul > li {
+    text-transform: uppercase;
+}
 .flashes h5 {
     padding: 12px 5px!important;
 }
