@@ -1,8 +1,16 @@
 body {
     background-color: rgb(213, 228, 223);
 }
-.nav-wrapper > ul > li {
+.nav-wrapper {
+    padding: 2px 6px!important;
+}
+.nav-wrapper > ul > li > a {
     text-transform: uppercase;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+.nav-wrapper > ul > i {
+    font-size: 1.2rem;
 }
 .flashes h5 {
     padding: 12px 5px!important;
@@ -22,4 +30,10 @@ body {
 }
 .collapsible-header .col strong {
     margin: 2px 10px; 
+}
+/* responsiveness */
+@media only screen and (max-width: 399px) {
+    .nav-wrapper .brand-logo strong {
+        font-size: 1.5rem;
+    }
 }
