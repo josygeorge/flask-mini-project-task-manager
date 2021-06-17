@@ -49,6 +49,12 @@
                         Created by:&nbsp;<strong><em>{{task.created_by}}</em></strong>
                         &nbsp;<em>{{task.created_at}}</em>
                     </p>
+                    {% if task.last_modified_by %}
+                        <p class="light-blue-text text-darken-3">
+                            Last modified by:&nbsp;<strong><em>{{task.last_modified_by}}</em></strong>
+                            &nbsp;<em>{{task.last_modified_at}}</em>
+                        </p>
+                    {% endif %}
                 </div>
             </li>
         {% endfor%}

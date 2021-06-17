@@ -136,9 +136,11 @@ def edit_task(task_id):
             "task_description": request.form.get("task_description"),
             "due_date": request.form.get("due_date"),
             "is_urgent": is_urgent,
-            "created_by": session["user"]
+            "last_modified_by": session['user'],
+            "last_modified_at": datetime.today().strftime('%Y-%m-%d %H:%M:%S')
         }
-        mongo.db.tasks.update({"_id": ObjectId(task_id)}, task_to_update)
+        mongo.db.tasks.update(
+            {"_id": ObjectId(task_id)}, {"$set": task_to_update})
         flash("Task Updated!")
         return redirect(url_for("get_tasks"))
     task = mongo.db.tasks.find_one({"_id": ObjectId(task_id)})
