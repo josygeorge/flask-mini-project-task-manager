@@ -34,6 +34,8 @@
                         <li><a href="{{ url_for('add_task')}}">Add Task</a></li>
                         <li><a href="#">Manage Categories</a></li>
                         <li><a href="{{ url_for('logout')}}">Logout</a></li>
+                        <i class="fas fa-user prefix light-blue-text text-lighten-4"> {{session.user}}</i>
+                        &nbsp;
                     {% else %}
                         <li><a href="{{ url_for('register')}}">Register</a></li>
                         <li><a href="{{ url_for('login')}}">Login</a></li>

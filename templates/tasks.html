@@ -10,9 +10,12 @@
                         <i class="fas fa-caret-down"></i>
                         {% if session.user|lower == task.created_by|lower or session.user == 'root_admin' %}
                             <!-- DONE - Modal Trigger -->
-                            <a href="#modal1" class="btn-small green accent-4 modal-trigger">Done</a>
+                            <button data-target="modal1{{task._id}}" 
+                                class="btn-small green accent-4 modal-trigger">
+                                Done
+                            </button>
                             <!-- Modal Structure -->
-                            <div id="modal1" class="modal white-text blue-grey darken-3">
+                            <div id="modal1{{task._id}}" class="modal white-text blue-grey darken-3">
                                 <div class="modal-content">
                                 <h4>Confirm</h4>
                                 <p>Do you want to delete?</p>
@@ -43,7 +46,8 @@
                     <h5>{{task.category_name}}</h5>
                     <p>{{task.task_description}}</p>
                     <p class="light-blue-text text-darken-3">
-                        By:&nbsp;<strong><em>{{task.created_by}}</em></strong>
+                        Created by:&nbsp;<strong><em>{{task.created_by}}</em></strong>
+                        &nbsp;<em>{{task.created_at}}</em>
                     </p>
                 </div>
             </li>
